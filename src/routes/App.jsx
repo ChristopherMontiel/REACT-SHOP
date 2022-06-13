@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route }  from 'react-router-dom';
+import { HashRouter, Routes, Route }  from 'react-router-dom';
 import Layout from '@containers/Layout';
 import ChangePassword from '@pages/ChangePassword';
 import RecoveryPassword from '@pages/RecoveryPassword';
@@ -15,10 +15,10 @@ import '@styles/global.css';
 
 const App = () => {
   const initialState = useInitialState();
-  
+
   return (
     <AppContext.Provider value={ initialState } >
-      <BrowserRouter>
+      <HashRouter>
         <Layout>
           <Routes>
             <Route path='/' element = {<Home />} />
@@ -32,7 +32,7 @@ const App = () => {
             <Route path='*' element = {<NotFound/>} />
           </Routes>
         </Layout>
-      </BrowserRouter>
+      </HashRouter>
     </AppContext.Provider>
   );
 }
