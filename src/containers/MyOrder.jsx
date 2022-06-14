@@ -1,47 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AppContext from '@context/AppContext';
+import OrderItem from '@components/OrderItem';
 import '@styles/MyOrder.scss';
+import arrow from '@icons/flechita.svg';
 
 const MyOrder = () => {
-  return (
-    <div class="my-order">
-      <div class="my-order-container">
-        <h1 class="title">My order</h1>
-        <div class="my-order-content">
-          <div class="order">
-            <p>
-              <span>03.25.21</span>
-              <span>6 articles</span>
-            </p>
-            <p>$560.00</p>
-          </div>
 
-          <div class="shopping-cart">
-            <figure>
-              <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike" />
-            </figure>
-            <p>Bike</p>
-            <p>$30,00</p>
-          </div>
-
-          <div class="shopping-cart">
-            <figure>
-              <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike" />
-            </figure>
-            <p>Bike</p>
-            <p>$30,00</p>
-          </div>
-
-          <div class="shopping-cart">
-            <figure>
-              <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike" />
-            </figure>
-            <p>Bike</p>
-            <p>$30,00</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+	const { state } = useContext(AppContext)
+	return (
+		<aside className="MyOrder">
+			<div className="title-container">
+				<img src={arrow} alt="arrow" />
+				<p className="title">My order</p>
+			</div>
+			<div className="my-order-content">
+				{state.cart.map(product => (
+					<OrderItem product = {product} key = {`orderItem-${product.id}`} />
+				))}
+				
+				<div className="order">
+					<p>
+						<span>Total</span>
+					</p>
+					<p>$560.00</p>
+				</div>
+				<button className="primary-button">
+					Checkout
+				</button>
+			</div>
+		</aside>
+	);
 }
 
 export default MyOrder;
