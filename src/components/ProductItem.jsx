@@ -7,7 +7,16 @@ const ProductItem = ( { product } ) => {
   const { addToCart } = useContext(AppContext);
   
   const handleClick = item => {
-    addToCart(item);
+    //addToCart(item);
+    let now= new Date();
+    console.log('el id del producto será', item.id + '' + now.getTime());
+    
+    addToCart({
+      title: item.title,
+      images: item.images,
+      price: item.price,
+      id: item.id + now.getTime()
+    });
   }
 
   return (
